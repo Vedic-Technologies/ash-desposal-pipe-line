@@ -93,7 +93,7 @@ const LoginBlockNew = () => {
                   />
                   {emailError && <div className="text-sm text-red-700">{emailError}</div>}
                 </div>
-                <div>
+                <div className="relative pb-12">
                   <label htmlFor="password" className="text-sm font-medium text-zinc-700 block mb-2">Password</label>
                   <div className="relative">
                     <input
@@ -125,12 +125,12 @@ const LoginBlockNew = () => {
                       </div>
                     )}
                   </div>
-                  {error && <div className="text-sm text-red-700">{error}</div>}
+                  {error && <div className=" absolute bottom-0 text-xs text-red-700">{error}</div>}
                 </div>
                 <div>
                   <button
                     type="submit"
-                    className="w-full flex mt-10 justify-center py-2 px-4 border border-transparent rounded-md shadow-sm text-md font-medium text-white bg-blue-800 hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-green-500"
+                    className="w-full flex mt-5 justify-center py-2 px-4 border border-transparent rounded-md shadow-sm text-md font-medium text-white bg-blue-800 hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-green-500"
                   >
                     {loader ? (
                       <>
