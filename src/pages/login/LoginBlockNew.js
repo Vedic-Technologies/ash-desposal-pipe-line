@@ -1,10 +1,9 @@
 import React, { useEffect, useRef, useState } from "react";
 import axios from "axios";
-import login_image from '../../assets/images/login_image.jpg';
+import login_image from "../../assets/images/login_image2.jpg";
 import { useNavigate } from "react-router-dom";
 import { BiSolidHide } from "react-icons/bi";
 import { IoMdEye } from "react-icons/io";
-
 
 const LoginBlockNew = () => {
   const [email, setEmail] = useState("");
@@ -15,26 +14,23 @@ const LoginBlockNew = () => {
   const [loader, setLoader] = useState(false);
   const [passVisibility, setPassVisibility] = useState(false);
   const navigate = useNavigate();
-  // const passRef = useRef<HTMLInputElement>(null);
+  const passRef = useRef(null);
 
-  // const visiblePassword = () => {
-  //   passRef.current!.type = "text";
-  //   setPassVisibility((prev) => !prev);
-  // };
-
-  // const nonVisiblePassword = () => {
-  //   passRef.current!.type = "password";
-  //   setPassVisibility((prev) => !prev);
-  // };
-
+  const togglePasswordVisibility = () => {
+    if (passRef.current) {
+      passRef.current.type = passVisibility ? "password" : "text";
+      setPassVisibility((prev) => !prev);
+    }
+  };
   const verifyLogin = async () => {
-  
     if (password.length < 8) {
       setError("Password too short, must be greater than 7 characters");
     } else if (password.length > 30) {
       setError("Password too long, must be less than 31 characters");
     } else if (!/\S+@\S+\.\S+/.test(email)) {
-      setEmailError("Invalid email format. Please enter a valid email address.");
+      setEmailError(
+        "Invalid email format. Please enter a valid email address."
+      );
     } else {
       try {
         setLoader(true);
@@ -53,9 +49,13 @@ const LoginBlockNew = () => {
       } catch (error) {
         setLoader(false);
         if (axios.isAxiosError(error) && !error.response) {
-          setServerError("Network Error: Please check your internet connection and try again.");
+          setServerError(
+            "Network Error: Please check your internet connection and try again."
+          );
         } else {
-          setServerError("An unexpected error occurred. Please try again later.");
+          setServerError(
+            "An unexpected error occurred. Please try again later."
+          );
         }
       }
     }
@@ -63,21 +63,31 @@ const LoginBlockNew = () => {
 
   return (
     <div className="w-full flex items-center justify-center">
-      <div className="w-1/2 bg-white rounded-3xl shadow-lg mx-4">
+      <div className="w-1/2 bg-white rounded-3xl shadow-lg mx-4 ">
         <div className="md:flex">
           <div className="hidden md:block md:w-1/2 relative p-5">
-            <img className="object-cover w-full h-full rounded-2xl" src={login_image} alt="hello" />
+            <img
+              className="object-cover w-full h-full rounded-2xl"
+              src={login_image}
+              alt="hello"
+            />
           </div>
           <div className="w-1/2 p-5">
             <div className="text-center">
-              <h2 className="text-zinc-600 text-6xl font-bold mt-10" style={{ fontFamily: "Edu VIC WA NT Beginner" }}>
+              <h2
+                className="text-zinc-600 text-6xl font-bold mt-10"
+                style={{ fontFamily: "Edu VIC WA NT Beginner" }}>
                 Sign In
               </h2>
             </div>
             <div className="center">
               <form className="space-y-6 mt-14 w-[70%]" onSubmit={verifyLogin}>
                 <div>
-                  <label htmlFor="email" className="text-sm font-medium text-zinc-700 block mb-2">Email</label>
+                  <label
+                    htmlFor="email"
+                    className="text-sm font-medium text-zinc-700 block mb-2">
+                    Email
+                  </label>
                   <input
                     type="email"
                     id="email"
@@ -91,17 +101,23 @@ const LoginBlockNew = () => {
                       setError(null);
                     }}
                   />
-                  {emailError && <div className="text-sm text-red-700">{emailError}</div>}
+                  {emailError && (
+                    <div className="text-sm text-red-700">{emailError}</div>
+                  )}
                 </div>
-                <div className="relative pb-12">
-                  <label htmlFor="password" className="text-sm font-medium text-zinc-700 block mb-2">Password</label>
+                <div>
+                  <label
+                    htmlFor="password"
+                    className="text-sm font-medium text-zinc-700 block mb-2">
+                    Password
+                  </label>
                   <div className="relative">
                     <input
                       type="password"
                       id="password"
-                      // ref={passRef}
+                      ref={passRef}
                       placeholder="••••••••"
-                      className="w-full px-3 py-2 border border-zinc-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500"
+                      className="w-full px-3 py-2 pr-10 border border-zinc-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500"
                       required
                       value={password}
                       onChange={(e) => {
@@ -111,27 +127,24 @@ const LoginBlockNew = () => {
                     />
                     {passVisibility ? (
                       <div
-                        className="absolute top-[50%] right-5 translate-y-[-50%] cursor-pointer text-gray-400 text-sm scale-[1.5]"
-                        // onClick={nonVisiblePassword}
-                      >
+                        className="absolute top-[50%] right-2 translate-y-[-50%] cursor-pointer text-gray-400 text-sm scale-[1.5]"
+                        onClick={togglePasswordVisibility}>
                         <IoMdEye className="mr-2" />
                       </div>
                     ) : (
                       <div
-                        className="absolute top-[50%] translate-y-[-50%] right-5 cursor-pointer text-gray-400 text-sm scale-[1.5]"
-                        // onClick={visiblePassword}
-                      >
+                        className="absolute top-[50%] translate-y-[-50%] right-2 cursor-pointer text-gray-400 text-sm scale-[1.5]"
+                        onClick={togglePasswordVisibility}>
                         <BiSolidHide className="mr-2" />
                       </div>
                     )}
                   </div>
-                  {error && <div className=" absolute bottom-0 text-xs text-red-700">{error}</div>}
+                  {error && <div className="text-sm text-red-700">{error}</div>}
                 </div>
                 <div>
                   <button
                     type="submit"
-                    className="w-full flex mt-5 justify-center py-2 px-4 border border-transparent rounded-md shadow-sm text-md font-medium text-white bg-blue-800 hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-green-500"
-                  >
+                    className="w-full flex mt-5 justify-center py-2 px-4 border border-transparent rounded-md shadow-sm text-md font-medium text-white bg-blue-800 hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-green-500">
                     {loader ? (
                       <>
                         <svg
@@ -140,8 +153,7 @@ const LoginBlockNew = () => {
                           className="inline w-4 h-4 mr-3 text-white animate-spin"
                           viewBox="0 0 100 101"
                           fill="none"
-                          xmlns="http://www.w3.org/2000/svg"
-                        >
+                          xmlns="http://www.w3.org/2000/svg">
                           <path
                             d="M100 50.5908C100 78.2051 77.6142 100.591 50 100.591C22.3858 100.591 0 78.2051 0 50.5908C0 22.9766 22.3858 0.59082 50 0.59082C77.6142 0.59082 100 22.9766 100 50.5908ZM9.08144 50.5908C9.08144 73.1895 27.4013 91.5094 50 91.5094C72.5987 91.5094 90.9186 73.1895 90.9186 50.5908C90.9186 27.9921 72.5987 9.67226 50 9.67226C27.4013 9.67226 9.08144 27.9921 9.08144 50.5908Z"
                             fill="#E5E7EB"
@@ -161,12 +173,16 @@ const LoginBlockNew = () => {
               </form>
             </div>
             <div className="mt-6 text-center">
-              <p className="text-sm text-zinc-600">Can't access your account? <a href="#" className="text-green-600 hover:text-green-500">Connect admin</a></p>
+              <p className="text-sm text-zinc-600">
+                Can't access your account?{" "}
+                <a href="#" className="text-green-600 hover:text-green-500">
+                  Connect admin
+                </a>
+              </p>
             </div>
           </div>
         </div>
       </div>
-      
     </div>
   );
 };
