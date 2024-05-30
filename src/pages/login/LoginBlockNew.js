@@ -15,18 +15,14 @@ const LoginBlockNew = () => {
   const [loader, setLoader] = useState(false);
   const [passVisibility, setPassVisibility] = useState(false);
   const navigate = useNavigate();
-  // const passRef = useRef<HTMLInputElement>(null);
+  const passRef = useRef(null);
 
-  // const visiblePassword = () => {
-  //   passRef.current!.type = "text";
-  //   setPassVisibility((prev) => !prev);
-  // };
-
-  // const nonVisiblePassword = () => {
-  //   passRef.current!.type = "password";
-  //   setPassVisibility((prev) => !prev);
-  // };
-
+  const togglePasswordVisibility = () => {
+    if (passRef.current) {
+      passRef.current.type = passVisibility ? 'password' : 'text';
+      setPassVisibility((prev) => !prev);
+    }
+  };
   const verifyLogin = async () => {
   
     if (password.length < 8) {
@@ -99,9 +95,9 @@ const LoginBlockNew = () => {
                     <input
                       type="password"
                       id="password"
-                      // ref={passRef}
+                      ref={passRef}
                       placeholder="••••••••"
-                      className="w-full px-3 py-2 border border-zinc-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500"
+                      className="w-full px-3 py-2 pr-10 border border-zinc-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500"
                       required
                       value={password}
                       onChange={(e) => {
@@ -111,15 +107,15 @@ const LoginBlockNew = () => {
                     />
                     {passVisibility ? (
                       <div
-                        className="absolute top-[50%] right-5 translate-y-[-50%] cursor-pointer text-gray-400 text-sm scale-[1.5]"
-                        // onClick={nonVisiblePassword}
+                        className="absolute top-[50%] right-2 translate-y-[-50%] cursor-pointer text-gray-400 text-sm scale-[1.5]"
+                        onClick={togglePasswordVisibility}
                       >
                         <IoMdEye className="mr-2" />
                       </div>
                     ) : (
                       <div
-                        className="absolute top-[50%] translate-y-[-50%] right-5 cursor-pointer text-gray-400 text-sm scale-[1.5]"
-                        // onClick={visiblePassword}
+                        className="absolute top-[50%] translate-y-[-50%] right-2 cursor-pointer text-gray-400 text-sm scale-[1.5]"
+                        onClick={togglePasswordVisibility}
                       >
                         <BiSolidHide className="mr-2" />
                       </div>
