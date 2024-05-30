@@ -1,6 +1,6 @@
 import React, { useEffect, useRef, useState } from "react";
 import axios from "axios";
-import login_image from '../../assets/images/login_image.jpg';
+import login_image from '../../assets/images/login_image2.jpg';
 import { useNavigate } from "react-router-dom";
 import { BiSolidHide } from "react-icons/bi";
 import { IoMdEye } from "react-icons/io";
@@ -59,7 +59,7 @@ const LoginBlockNew = () => {
 
   return (
     <div className="w-full flex items-center justify-center">
-      <div className="w-1/2 bg-white rounded-3xl shadow-lg mx-4">
+      <div className="w-1/2 bg-white rounded-3xl shadow-lg mx-4 ">
         <div className="md:flex">
           <div className="hidden md:block md:w-1/2 relative p-5">
             <img className="object-cover w-full h-full rounded-2xl" src={login_image} alt="hello" />
@@ -89,7 +89,7 @@ const LoginBlockNew = () => {
                   />
                   {emailError && <div className="text-sm text-red-700">{emailError}</div>}
                 </div>
-                <div className="relative pb-12">
+                <div>
                   <label htmlFor="password" className="text-sm font-medium text-zinc-700 block mb-2">Password</label>
                   <div className="relative">
                     <input
@@ -121,7 +121,7 @@ const LoginBlockNew = () => {
                       </div>
                     )}
                   </div>
-                  {error && <div className=" absolute bottom-0 text-xs text-red-700">{error}</div>}
+                  {error && <div className="text-sm text-red-700">{error}</div>}
                 </div>
                 <div>
                   <button
