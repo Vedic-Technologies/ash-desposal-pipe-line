@@ -1,31 +1,21 @@
 import React from 'react';
-import DataTable from './DataTable';
-import DataCard from './DataCard';
 import Navbar from './Navbar';
 import { Routes,Route,useLocation } from 'react-router-dom';
 import Login from './pages/login/Login';
-import DashBoard from './pages/dashboard/DashBoard';
+import Layout from './pages/layout/Layout';
+
 const App = () => {
   const location = useLocation();
-  // const data = [
-  //   { Description: 'Inside Plant- Silo to Kelo river', UOM: 'Mtr', CivilAgency: 'Krishna Buldicone', MechAgency: 'Jai Jagannath', Scope: 1314, LandAvailable: 1314, RowRequired: 0, CivilWorksCompleted: 1214, CivilFrontProvided: 1214, PipeErectionCompleted: 1108, Remarks: '03 Road Crossing Culvert Erection U/p' },
-  //   { Description: 'Budia Village', UOM: 'Mtr', CivilAgency: '', MechAgency: '', Scope: 2552, LandAvailable: 1248, RowRequired: 1304, CivilWorksCompleted: 714, CivilFrontProvided: 462, PipeErectionCompleted: 462, Remarks: 'Fitup & welding U/p' },
-  //   // ... other data rows
-  // ];
+  
 
-  // const summaryData = [
-  //   { title: 'Total Civil Works Completed', value: '3090' },
-  //   { title: 'Total Pipe Erection Completed', value: '2984' },
-  //   { title: 'Total Civil Percentage Completed', value: '33%' },
-  //   { title: 'Total Pipe Erection Percentage Completed', value: '32%' },
-  // ];
+
 
   return (
     <> 
     {location.pathname !== "/" && <Navbar />}
    <Routes>
     <Route path="/" element={<Login/>}/>
-    <Route path="/dashbaord" element={<DashBoard/>}/>   
+    <Route path="/layout/*" element={<Layout/>}/>   
     </Routes>
     {/* <div className="container mx-auto p-4">
       
