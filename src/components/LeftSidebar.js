@@ -22,7 +22,7 @@ const LeftSidebar = () => {
         <NavLink 
           to="dashboard" 
           className={({ isActive }) => 
-            `flex items-center p-4 hover:bg-gray-700 ${isActive ? 'bg-gray-700 text-white' : 'text-black'}`
+            `flex items-center p-4 ${isActive ? 'bg-gray-700 text-white' : 'text-black hover:bg-gray-300 '}`
           }
         >
           <i className="fa-brands fa-slack text-lg mr-3"></i>
@@ -32,7 +32,7 @@ const LeftSidebar = () => {
         <NavLink 
           to="manage_report" 
           className={({ isActive }) => 
-            `flex items-center p-4 hover:bg-gray-200 ${isActive ? 'bg-gray-700 text-white' : 'text-black'}`
+            `flex items-center p-4  ${isActive ? 'bg-gray-700 text-white' : 'text-black hover:bg-gray-300 '}`
           }
         >
           <i class="fa-regular fa-pen-to-square mr-3"></i>
@@ -42,7 +42,7 @@ const LeftSidebar = () => {
         <NavLink 
           to="daily_report" 
           className={({ isActive }) => 
-            `flex items-center p-4 hover:bg-gray-200 ${isActive ? 'bg-gray-700 text-white' : 'text-black'}`
+            `flex items-center p-4 ${isActive ? 'bg-gray-700 text-white' : 'text-black hover:bg-gray-300 '}`
           }
         >
           <i class="fa-solid fa-code mr-3"></i>
@@ -52,7 +52,7 @@ const LeftSidebar = () => {
         <NavLink 
           to="monthly_report" 
           className={({ isActive }) => 
-            `flex items-center p-4 hover:bg-gray-700 ${isActive ? 'bg-gray-700 text-white' : 'text-black'}`
+            `flex items-center p-4  ${isActive ? 'bg-gray-700 text-white' : 'text-black hover:bg-gray-300'}`
           }
         >
          <i class="fa-solid fa-sliders mr-3"></i>
@@ -62,7 +62,7 @@ const LeftSidebar = () => {
         <NavLink 
           to="/" 
           className={({ isActive }) => 
-            `flex items-center p-4 hover:bg-gray-700  ${isActive ? 'bg-gray-700 text-white' : 'text-black'}`
+            `flex items-center p-4   ${isActive ? 'bg-gray-700 text-white' : 'text-black hover:bg-gray-300'}`
           }
         >
          <i class="fa-solid fa-arrow-right-from-bracket mr-3"></i>

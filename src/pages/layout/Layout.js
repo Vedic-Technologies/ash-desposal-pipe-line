@@ -12,7 +12,7 @@ const Layout = () => {
    
       <div className="flex">
         <LeftSidebar />
-        <div className="ml-64 p-4 flex-grow">
+        <div className="ml-64 flex-grow">
           <Routes>
             <Route path="/dashboard" element={<DashBoard />} />
             <Route path="/monthly_report" element={<MonthlyReport />} />

@@ -2,7 +2,8 @@ import React from 'react'
 
 const ManageReport = () => {
   return (
-    <div>ManageReport</div>
+    <div className='center h-screen w-full text-xl'>
+      Under Development ...</div>
   )
 }
 
