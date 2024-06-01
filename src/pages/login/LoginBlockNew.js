@@ -28,7 +28,7 @@ const LoginBlockNew = () => {
       e.preventDefault();
       if(email==='admin@gmail.com' && password==='123456')
         {
-          navigate("/layout");
+          navigate("/layout/dashboard");
         }
         else{
           setError("Invalid Credentials");
